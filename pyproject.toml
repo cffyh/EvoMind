@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "epm"
+version = "0.1.0"
+description = "Charging-platform electricity spot intelligent trading system (v2.0 scaffold)"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=1.3.0",
+    "numpy>=1.20.0",
+    "openpyxl>=3.0.0",
+    "scikit-learn>=1.2.0",
+    "scipy>=1.10.0",
+    "statsmodels>=0.14.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0.0"]
+xgb = ["xgboost>=1.7.0"]
+
+[project.scripts]
+epm-decide = "epm.cli.decide:main"
+epm-settle = "epm.cli.settle:main"
+epm-monthly-review = "epm.cli.monthly_review:main"
+
+[tool.setuptools.packages.find]
+include = ["epm*"]
+exclude = ["tests*", "src*", "src_legacy*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
